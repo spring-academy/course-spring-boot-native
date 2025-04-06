@@ -1,0 +1,66 @@
+apiVersion: training.educates.dev/v1beta1
+kind: Workshop
+metadata:
+  name: spr-boot-native-migrating-existing-app
+spec:
+  title: Migrating an Existing Spring Boot Application to Native Images
+  description: "Spring Boot Native, Lab 2: Migrating an Existing App"
+  workshop:
+    image: jdk17-environment:*
+    packages:
+      - name: spring-academy-lab
+        files:
+          - image:
+              url: ghcr.io/spring-academy/spring-academy-extension-packages/spring-academy-lab
+              tagSelection:
+                semver:
+                  constraints: ">=1.0.0 <2.0.0"
+    files:
+      - image: # Note: format is {repository-name}-files
+          url: $(image_repository)/course-spring-boot-native-files:$(workshop_version)
+        includePaths:
+          - /workshops/02-migrating-existing-app/workshop/**
+        newRootPath: workshops/02-migrating-existing-app
+      - path: .local/share/code-server
+        image:
+          url: ghcr.io/spring-academy/vscode-java-tools-$(platform_arch)-files:0.25.14
+      - path: exercises
+        git:
+          url: https://github.com/spring-academy/course-spring-boot-native-code
+          ref: main
+        newRootPath: .
+  request:
+    parameters:
+    - name: USER_DOMAIN
+      value: "unknown.domain"
+    - name: USER_EMAIL
+      value: "somebody@unknown.domain"
+  session:
+    env:
+      - name: LESSON_LABEL
+        value: initial
+    namespaces:
+      budget: x-large
+      security:
+        policy: baseline
+        rules:
+          exclude:
+            - no-localhost-service
+            - restrict-nodeport
+    resources:
+      memory: 8Gi
+    applications:
+      terminal:
+        enabled: true
+        layout: split
+      editor:
+        enabled: true
+      docker:
+        enabled: true
+        memory: 4Gi
+        storage: 20Gi
+        socket:
+          enabled: true
+    ingresses:
+      - name: cashcard
+        port: 8080

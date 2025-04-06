@@ -1,0 +1,1 @@
+The Building Native Applications with Spring Boot and GraalVM course introduces the GraalVM native image compiler. It's for experienced developers who want to learn the advantages of deploying applications as native images, and how to develop and migrate Spring Boot applications to be native image compatible.
