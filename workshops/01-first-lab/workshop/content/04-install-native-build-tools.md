@@ -29,15 +29,15 @@ Available Java Versions for Linux 64bit
  Vendor        | Use | Version      | Dist    | Status     | Identifier
 --------------------------------------------------------------------------------
  ...
- Liberica NIK  |     | 23.r20       | nik     |            | 23.r20-nik
-               |     | 23.r17       | nik     |            | 23.r17-nik
+ Liberica NIK  |     | 25.0.4.r25   | nik     |            | 25.0.4.r25-nik
+               |     | 25.0.4.fx    | nik     |            | 25.0.4.fx-nik
 ```
 
 Great! Let's use Liberica NIK, which is based on the same JDK as the regular Liberica distribution.
-We'll choose this one and install the latest Java 17 version available:
+We'll choose this one and install the latest Java 25 version available:
 
 ```console
-[~/demo] $ sdk install java 23.r17-nik
+[~/demo] $ sdk install java 25.0.4.r25-nik
 ```
 
 Let's verify that our `java` executable is the GraalVM we just installed. First, you'll need to start a new shell, so that the shell can "see" what was just installed by SDKMAN!:
@@ -50,18 +50,18 @@ Now that you've started a new shell, you should see that the version of Java is 
 
 ```console
 [~/demo] $ java -version
-openjdk version "17.0.7" 2023-04-18 LTS
-OpenJDK Runtime Environment Liberica-NIK-23.0.0-1 (build 17.0.7+7-LTS)
-OpenJDK 64-Bit Server VM Liberica-NIK-23.0.0-1 (build 17.0.7+7-LTS, mixed mode, sharing)
+openjdk version "25.0.4" 2026-01-20 LTS
+OpenJDK Runtime Environment Liberica-NIK-25.0.4+1 (build 25.0.4+11-LTS)
+OpenJDK 64-Bit Server VM Liberica-NIK-25.0.4+1 (build 25.0.4+11-LTS, mixed mode, sharing)
 ```
 
 Let's also check that the `native-image` tool is available as expected:
 
 ```console
 [~/demo] $ native-image --version
-native-image 17.0.7 2023-04-18
-GraalVM Runtime Environment Liberica-NIK-23.0.0-1 (build 17.0.7+7-LTS)
-Substrate VM Liberica-NIK-23.0.0-1 (build 17.0.7+7-LTS, serial gc)
+native-image 25.0.4 2026-01-20
+GraalVM Runtime Environment Liberica-NIK-25.0.4+1 (build 25.0.4+11-LTS)
+Substrate VM Liberica-NIK-25.0.4+1 (build 25.0.4+11-LTS, serial gc)
 ```
 
 Now that we have GraalVM installed, we're ready to use it to build and run our application as a native image.

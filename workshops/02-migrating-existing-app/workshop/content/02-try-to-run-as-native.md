@@ -7,7 +7,7 @@ The first thing to do is add the native image plugin to the Gradle build file. A
 ```json
 plugins {
    …
-   id 'org.graalvm.buildtools.native' version '0.9.23'
+   id 'org.graalvm.buildtools.native' version '1.1.1'
 }
 ```
 

@@ -27,7 +27,7 @@ spec:
       - path: exercises
         git:
           url: https://github.com/spring-academy/course-spring-boot-native-code
-          ref: main
+          ref: spring-boot-4
         newRootPath: .
   request:
     parameters:
