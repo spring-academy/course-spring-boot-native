@@ -1,0 +1,90 @@
+apiVersion: training.educates.dev/v1beta1
+kind: Workshop
+metadata:
+  name: spr-boot-native-first-lab
+spec:
+  title: First Spring Boot Native Lab
+  description: "1st Lab. This description only appears in the trainingportal UI, which is not user-facing in Spring Academy. We use it for development."
+  workshop:
+    image: jdk17-environment:*
+    files:
+      - image: # Note: format is {repository-name}-files
+          url: $(image_repository)/course-spring-boot-native-files:$(workshop_version)
+        includePaths:
+          - /workshops/01-first-lab/workshop/**
+        newRootPath: workshops/01-first-lab
+      - path: .local/share/code-server
+        image:
+          url: ghcr.io/spring-academy/vscode-java-tools-$(platform_arch)-files:0.25.14
+  request:
+    parameters:
+    - name: USER_DOMAIN
+      value: "unknown.domain"
+    - name: USER_EMAIL
+      value: "somebody@unknown.domain"
+  session:
+    namespaces:
+      budget: x-large
+    resources:
+      memory: 8Gi
+    applications:
+      terminal:
+        enabled: true
+        layout: split
+      editor:
+        enabled: true
+      docker:
+        enabled: true
+        memory: 4Gi
+        storage: 20Gi
+        socket:
+          enabled: true
+    dashboards:
+      - name: Spring Initializr
+        url: "$(ingress_protocol)://initializr-$(session_namespace).$(ingress_domain)"
+    ingresses:
+      - name: initializr
+        protocol: http
+        host: initializr.$(workshop_namespace).svc.cluster.local
+        port: 8080
+  environment:
+    objects:
+      - apiVersion: apps/v1
+        kind: Deployment
+        metadata:
+          name: initializr
+          labels:
+            app: initializr
+        spec:
+          replicas: 1
+          selector:
+            matchLabels:
+              app: initializr
+          template:
+            metadata:
+              labels:
+                app: initializr
+            spec:
+              containers:
+                - name: dashboard
+                  image: ghcr.io/vmware-tanzu-labs/educates-spring-initializr:2.0
+                  imagePullPolicy: IfNotPresent
+                  ports:
+                    - name: 8080-tcp
+                      containerPort: 8080
+                      protocol: TCP
+      - apiVersion: v1
+        kind: Service
+        metadata:
+          name: initializr
+          labels:
+            app: initializr
+        spec:
+          type: ClusterIP
+          selector:
+            app: initializr
+          ports:
+            - name: 8080-tcp
+              port: 8080
+              targetPort: 8080
+              protocol: TCP
