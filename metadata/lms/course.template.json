@@ -1,0 +1,20 @@
+{
+  "id": "spring-boot-native",
+  "slug": "spring-boot-native",
+  "title": "Building Native Applications with Spring Boot and GraalVM",
+  "status": "live",
+  "order": 800,
+  "level": "intermediate",
+  "topics": ["java", "native", "deployment"],
+  "entitlements": ["pro"],
+  "instructors": ["spring-sebastien-deleuze"],
+  "settings": {
+    "thumbnail": "https://raw.githubusercontent.com/spring-academy/spring-academy-assets/bc454e49f7913aaa33e7baf13ff8a4c79e64df95/courses/course-spring-boot-native/course-logo.svg",
+    "pro": true,
+    "debug.version": "${GITHUB_REF_NAME}",
+    "debug.commit": "${GITHUB_SHA}",
+    "debug.updated": "${DEBUG_DATE}",
+    "debug.who": "${GITHUB_ACTOR}",
+    "debug.github-workflow": "${GITHUB_WORKFLOW}"
+  }
+}

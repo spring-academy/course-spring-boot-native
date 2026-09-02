@@ -1,0 +1,10 @@
+name: "Lab: Build Your First Native Application"
+modules:
+  activate:
+    - 01-initializr
+    - 02-add-api-endpoint
+    - 03-run-app-on-jvm
+    - 04-install-native-build-tools
+    - 05-run-app-as-native-image
+    - 06-run-app-using-buildpack
+    - 99-summary

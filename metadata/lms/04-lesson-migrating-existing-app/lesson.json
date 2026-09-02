@@ -1,0 +1,29 @@
+{
+  "id": "spring-boot-native-migrating-existing-app",
+  "slug": "migrating-existing-app",
+  "title": "Migrating an Existing Spring Boot Application to a native image",
+  "status": "live",
+  "type": "article",
+  "duration": 600,
+  "settings": {
+    "manualCompletion": true,
+    "links": [
+      {
+        "text": "Spring IoC Container",
+        "url": "https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans"
+      },
+      {
+        "text": "Runtime Hints Reference Documentation",
+        "url": "https://docs.spring.io/spring-framework/reference/core/aot.html#aot.hints"
+      },
+      {
+        "text": "Runtime Hints API Documentation",
+        "url": "https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/aot/hint/RuntimeHints.html"
+      },
+      {
+        "text": "Reachability Metadata",
+        "url": "https://www.graalvm.org/latest/reference-manual/native-image/metadata/"
+      }
+    ]
+  }
+}

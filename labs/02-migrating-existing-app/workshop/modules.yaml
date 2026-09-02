@@ -1,0 +1,17 @@
+modules:
+  01-cashcard-application:
+    name: "The Cash Card application"
+    exit_sign: Continue
+  02-try-to-run-as-native:
+    name: "Migrating to native image: First Steps"
+    exit_sign: Continue
+  03-test-1-reflection-metadata:
+    name: "Reflection Metadata"
+    exit_sign: Continue
+  04-test-2-java-resource:
+    name: "Java Resource Metadata"
+    exit_sign: Continue
+  99-summary:
+    name: "Summary"
+    # Use the value "Finish" in only the last module, in order to hide the blue button.
+    exit_sign: Finish

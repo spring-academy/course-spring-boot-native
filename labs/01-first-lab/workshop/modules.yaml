@@ -1,0 +1,23 @@
+modules:
+  01-initializr:
+    name: "Bootstrap a new project using Spring Initializr"
+    exit_sign: Continue
+  02-add-api-endpoint:
+    name: "Add an API endpoint"
+    exit_sign: Continue
+  03-run-app-on-jvm:
+    name: "Run your application on the JVM"
+    exit_sign: Continue
+  04-install-native-build-tools:
+    name: "Install GraalVM and the native image build tools"
+    exit_sign: Continue
+  05-run-app-as-native-image:
+    name: "Build and run your application using Native Build Tools"
+    exit_sign: Continue
+  06-run-app-using-buildpack:
+    name: "Build and run your application using Cloud Native Buildpacks"
+    exit_sign: Continue
+  99-summary:
+    name: "Summary"
+    # Use the value "Finish" in only the last module, in order to hide the blue button.
+    exit_sign: Finish
