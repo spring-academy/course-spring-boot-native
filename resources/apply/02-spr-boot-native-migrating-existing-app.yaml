@@ -1,12 +1,20 @@
 apiVersion: training.educates.dev/v1beta1
 kind: Workshop
 metadata:
-  name: spr-boot-native-first-lab
+  name: spr-boot-native-migrating-existing-app
 spec:
-  title: First Spring Boot Native Lab
-  description: "1st Lab. This description only appears in the trainingportal UI, which is not user-facing in Spring Academy. We use it for development."
+  title: Migrating an Existing Spring Boot Application to Native Images
+  description: "Spring Boot Native, Lab 2: Migrating an Existing App"
   workshop:
     image: jdk17-environment:*
+    packages:
+      - name: spring-academy-lab
+        files:
+          - image:
+              url: ghcr.io/spring-academy/spring-academy-extension-packages/spring-academy-lab
+              tagSelection:
+                semver:
+                  constraints: ">=1.0.0 <2.0.0"
     files:
       - http:
           # the name of the tar.gz here should make the workshop name
@@ -24,8 +32,16 @@ spec:
     env:
       - name: WEBSERVER
         value: "$(ingress_protocol)://$(workshop_namespace)-files.$(ingress_domain)"
+      - name: LESSON_LABEL
+        value: initial
     namespaces:
       budget: x-large
+      security:
+        policy: baseline
+        rules:
+          exclude:
+            - no-localhost-service
+            - restrict-nodeport
     resources:
       memory: 8Gi
     applications:
@@ -40,13 +56,8 @@ spec:
         storage: 20Gi
         socket:
           enabled: true
-    dashboards:
-      - name: Spring Initializr
-        url: "$(ingress_protocol)://initializr-$(session_namespace).$(ingress_domain)"
     ingresses:
-      - name: initializr
-        protocol: http
-        host: initializr.$(workshop_namespace).svc.cluster.local
+      - name: cashcard
         port: 8080
     volumes:
       - name: workshop-setup-scripts
@@ -67,45 +78,6 @@ spec:
             #!/bin/bash
             # This is run at session creation
             curl -L ${WEBSERVER}/exercises.tar.gz | tar -xvz -C ${HOME}
-      - apiVersion: apps/v1
-        kind: Deployment
-        metadata:
-          name: initializr
-          labels:
-            app: initializr
-        spec:
-          replicas: 1
-          selector:
-            matchLabels:
-              app: initializr
-          template:
-            metadata:
-              labels:
-                app: initializr
-            spec:
-              containers:
-                - name: dashboard
-                  image: ghcr.io/vmware-tanzu-labs/educates-spring-initializr:2.0
-                  imagePullPolicy: IfNotPresent
-                  ports:
-                    - name: 8080-tcp
-                      containerPort: 8080
-                      protocol: TCP
-      - apiVersion: v1
-        kind: Service
-        metadata:
-          name: initializr
-          labels:
-            app: initializr
-        spec:
-          type: ClusterIP
-          selector:
-            app: initializr
-          ports:
-            - name: 8080-tcp
-              port: 8080
-              targetPort: 8080
-              protocol: TCP
       - apiVersion: v1
         kind: Service
         metadata:
