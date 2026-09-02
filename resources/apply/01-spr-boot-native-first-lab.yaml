@@ -6,8 +6,11 @@ spec:
   title: First Spring Boot Native Lab
   description: "1st Lab. This description only appears in the trainingportal UI, which is not user-facing in Spring Academy. We use it for development."
   workshop:
-    image: jdk21-environment:*
+    image: jdk17-environment:*
     files:
+      - http:
+          # the name of the tar.gz here should make the workshop name
+          url: "$(ingress_protocol)://$(workshop_namespace)-files.$(ingress_domain)/$(workshop_name).tar.gz"
       - path: .local/share/code-server
         image:
           url: ghcr.io/spring-academy/vscode-java-tools-$(platform_arch)-files:0.31.1
@@ -43,14 +46,6 @@ spec:
         protocol: http
         host: initializr.$(workshop_namespace).svc.cluster.local
         port: 8080
-    volumes:
-      - name: workshop-setup-scripts
-        secret:
-          secretName: workshop-setup-scripts
-          defaultMode: 0755
-    volumeMounts:
-      - name: workshop-setup-scripts
-        mountPath: /opt/packages/00-workshop-setup-scripts/setup.d
   environment:
     objects:
       - apiVersion: apps/v1
@@ -91,3 +86,59 @@ spec:
             - name: 8080-tcp
               port: 8080
               targetPort: 8080
+              protocol: TCP
+      - apiVersion: v1
+        kind: Service
+        metadata:
+          name: $(workshop_namespace)-files
+          namespace: $(workshop_namespace)
+        spec:
+          type: ClusterIP
+          ports:
+          - port: 80
+            protocol: TCP
+            targetPort: 8080
+          selector:
+            deployment: files
+      - apiVersion: networking.k8s.io/v1
+        kind: Ingress
+        metadata:
+          name: $(workshop_namespace)-files
+          namespace: $(workshop_namespace)
+        spec:
+          tls:
+          - hosts:
+              - $(workshop_namespace)-files.$(ingress_domain)
+            secretName: $(ingress_secret)
+          rules:
+          - host: $(workshop_namespace)-files.$(ingress_domain)
+            http:
+              paths:
+              - backend:
+                  service:
+                    name: $(workshop_namespace)-files
+                    port:
+                      number: 80
+                pathType: Prefix
+                path: /
+      - apiVersion: apps/v1
+        kind: Deployment
+        metadata:
+          name: $(workshop_namespace)-files
+          namespace: $(workshop_namespace)
+        spec:
+          replicas: 1
+          selector:
+            matchLabels:
+              deployment: files
+          strategy:
+            type: Recreate
+          template:
+            metadata:
+              labels:
+                deployment: files
+            spec:
+              serviceAccountName: $(service_account)
+              containers:
+              - name: files
+                image: ${CONTAINER_REGISTRY}${CONTAINER_REPOSITORY}:${VERSION}
