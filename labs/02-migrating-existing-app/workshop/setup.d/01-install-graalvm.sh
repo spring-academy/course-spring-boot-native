@@ -1,18 +1,19 @@
 #!/bin/bash
 
-RELEASE_FILE=bellsoft-liberica-vm-core-openjdk17.0.7+7-23.0.0+1-linux-amd64.tar.gz
-curl -o $RELEASE_FILE https://download.bell-sw.com/vm/23.0.0/$RELEASE_FILE
+RELEASE_FILE=bellsoft-liberica-vm-openjdk25.0.4.1+2-25.0.4.1+1-linux-amd64.tar.gz
+
+curl -o $RELEASE_FILE https://download.bell-sw.com/vm/25.0.4.1/$RELEASE_FILE
 
 tar xzf $RELEASE_FILE
 rm $RELEASE_FILE
 
-UNTARRED_DIR=bellsoft-liberica-vm-core-openjdk17-23.0.0
+UNTARRED_DIR=bellsoft-liberica-vm-openjdk25-25.0.4.1
 INSTALLED_DIR="/opt/$UNTARRED_DIR"
 
 mv "$UNTARRED_DIR" "$INSTALLED_DIR"
 
 # TODO Is there a better way to set env vars in the eduk8s user's profile than writing directly to .bashrc?
-# Other than doing it in the workshopl.yaml because here is where we know what the values are.
+# Other than doing it in the workshop.yaml because here is where we know what the values are.
 cat >> "$HOME/.bashrc" <<EOF
 
 # GraalVM

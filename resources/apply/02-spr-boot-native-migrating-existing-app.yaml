@@ -6,7 +6,7 @@ spec:
   title: Migrating an Existing Spring Boot Application to Native Images
   description: "Spring Boot Native, Lab 2: Migrating an Existing App"
   workshop:
-    image: jdk17-environment:*
+    image: jdk21-environment:*
     packages:
       - name: spring-academy-lab
         files:
