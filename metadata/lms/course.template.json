@@ -9,7 +9,7 @@
   "entitlements": ["pro"],
   "instructors": ["spring-sebastien-deleuze"],
   "settings": {
-    "thumbnail": "https://raw.githubusercontent.com/spring-academy/spring-academy-assets/bc454e49f7913aaa33e7baf13ff8a4c79e64df95/courses/course-spring-boot-native/course-logo.svg",
+    "thumbnail": "https://raw.githubusercontent.com/spring-academy/spring-academy-assets/main/courses/course-spring-boot-native/course-logo.svg",
     "pro": true,
     "debug.version": "${GITHUB_REF_NAME}",
     "debug.commit": "${GITHUB_SHA}",
