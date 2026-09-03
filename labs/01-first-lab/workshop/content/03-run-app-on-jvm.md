@@ -5,6 +5,10 @@ We'll continue by simply building and testing the application as a non-native, i
 
 In the upper Terminal, run the following command, which tells Gradle to build and run the Spring Boot application. Be sure to change to the `demo` directory first:
 
+```dashboard:open-dashboard
+name: Terminal
+```
+
 ```console
 [~] $ cd demo
 [~/demo] $ ./gradlew bootRun

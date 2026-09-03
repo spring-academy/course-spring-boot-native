@@ -1,16 +1,18 @@
 We'll start by generating a complete codebase that's Native-Image-ready. To start, open the **_Spring Initializr_** Web UI.
 
 - In this Lab, it's in a tab over to the right, in this very browser window. **(Look right →)**, and you will find the **Spring Initializr** Tab.
+  
   > **_Note_**: When you are not using this Spring Academy browser-based Lab environment, the same Initializr web site can be found at [start.spring.io](https://start.spring.io/).
 
 You don't need to make any changes on the _Project_,
-_Language_, _Spring Boot_ or _Project Metadata_ sections of the Initializr web page.
-The default settings produce a complete application.
+_Language_, or _Spring Boot_ sections of the Initializr web page.
+
+In the _Project Metadata_ section, change the **Java** version to **25**. This
+matches the GraalVM distribution we'll install in a later step — the project
+won't build correctly on the JVM version the Initializr defaults to otherwise.
 
 On the _Dependencies_ section you must add two dependencies.
-Using the **ADD DEPENDENCIES...** button in the upper right,
-or alternatively the **ADD...** button in the lower right on smaller screens,
-select the following two dependencies.
+Using the **ADD DEPENDENCIES...** button in the upper right select the following two dependencies.
 You can find them by scrolling through the choices, or searching by name:
 
 - **GraalVM Native Support**

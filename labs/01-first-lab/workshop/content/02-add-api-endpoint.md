@@ -1,7 +1,12 @@
 Now let's add a REST GET endpoint so that it's easy to test that our application works.
 
 Select the **_Editor_** tab, to the right. This tab is running Visual Studio Code, an IDE that we'll use to interactively edit and test the application.
-Add the following Controller class by creating the file `demo/src/main/java/com/example/demo/HelloController.java` with the following content:
+Add the following Controller class by creating the file `demo/src/main/java/com/example/demo/HelloController.java` and updating its content with the following code:
+
+```editor:append-lines-to-file
+file: ~/demo/src/main/java/com/example/demo/HelloController.java
+description: "Create HelloController.java"
+```
 
 ```copy java
 package com.example.demo;

@@ -40,6 +40,18 @@ We'll choose this one and install the latest Java 25 version available:
 [~/demo] $ sdk install java 25.0.4.r25-nik
 ```
 
+The install should take a couple of minutes after which you will be asked if you wish to set the newly installed JDK as the default. Select `y` and hit enter.
+
+```console
+...
+Installing: java 25.0.4.r25-nik
+Done installing!
+
+Do you want java 25.0.4.r25-nik to be set as default? (Y/n): y
+
+Setting java 25.0.4.r25-nik as default.
+```
+
 Let's verify that our `java` executable is the GraalVM we just installed. First, you'll need to start a new shell, so that the shell can "see" what was just installed by SDKMAN!:
 
 ```console
@@ -49,19 +61,19 @@ Let's verify that our `java` executable is the GraalVM we just installed. First,
 Now that you've started a new shell, you should see that the version of Java is the newly-installed GraalVM:
 
 ```console
-[~/demo] $ java -version
-openjdk version "25.0.4" 2026-01-20 LTS
-OpenJDK Runtime Environment Liberica-NIK-25.0.4+1 (build 25.0.4+11-LTS)
-OpenJDK 64-Bit Server VM Liberica-NIK-25.0.4+1 (build 25.0.4+11-LTS, mixed mode, sharing)
+[~/demo] $ java --version
+openjdk 25.0.4 2026-07-21 LTS
+OpenJDK Runtime Environment Liberica-NIK-25.0.4-1 (build 25.0.4+10-LTS)
+OpenJDK 64-Bit Server VM Liberica-NIK-25.0.4-1 (build 25.0.4+10-LTS, mixed mode, sharing)
 ```
 
 Let's also check that the `native-image` tool is available as expected:
 
 ```console
 [~/demo] $ native-image --version
-native-image 25.0.4 2026-01-20
-GraalVM Runtime Environment Liberica-NIK-25.0.4+1 (build 25.0.4+11-LTS)
-Substrate VM Liberica-NIK-25.0.4+1 (build 25.0.4+11-LTS, serial gc)
+native-image 25.0.4 2026-07-21
+GraalVM Runtime Environment Liberica-NIK-25.0.4-1 (build 25.0.4+10-LTS)
+Substrate VM Liberica-NIK-25.0.4-1 (build 25.0.4+10-LTS, serial gc)
 ```
 
 Now that we have GraalVM installed, we're ready to use it to build and run our application as a native image.

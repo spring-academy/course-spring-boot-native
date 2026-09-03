@@ -10,7 +10,7 @@ When you build the application using a Cloud Native Buildpack, you produce not o
 
 Building your application using a Buildpack does _not_ require the GraalVM native image compiler to be installed locally, but it _does_ require Docker to be installed and usable as the current (non-root) user. Not to worry! This interactive Lab environment already has Docker installed and ready for use.
 
-**_Note_**: Regarding CPU architecture support: Cloud Native Buildpack support allows you to create **Linux x86/AMD** container images independently of the host Operating System, but **ARM** CPU architecture (e.g. the Mac M1 CPU) is not yet supported.
+**_Note_**: Regarding CPU architecture support: Cloud Native Buildpack multi-architecture support allows building an ARM64 app image on an ARM64 host, and building an AMD64 app image on an AMD64 host. It does not currently support building an app image for one architecture on a different architecture. However, if your host machine supports emulation (for example, with QEMU) you may be able to perform cross platform builds, albeit with a performance penalty.
 
 ## Build the application with Cloud Native Buildpack
 

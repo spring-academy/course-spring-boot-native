@@ -23,7 +23,7 @@ The JVM and native images make different tradeoffs, so it is important to unders
 
 ## How?
 
-Spring Boot 3 introduces official support for compiling applications to native executable with [GraalVM](https://www.graalvm.org/).
+Spring Boot 3 introduced official support for compiling applications to a native executable with [GraalVM](https://www.graalvm.org/).
 
 Before talking about the native compilation, let’s start with a quick overview of a typical deployment of a Spring Boot JVM application.
 
@@ -31,7 +31,7 @@ The Java source code is compiled to Java bytecode, and can be packaged easily by
 
 ![Deploying a Spring Boot application to run on the JVM](https://raw.githubusercontent.com/spring-academy/spring-academy-assets/main/courses/course-spring-boot-native/deployment-jvm.svg)
 
-Spring Boot 3 introduces additional capabilities, building a smaller, more efficient container image, thanks to two additional steps.
+Spring Boot 3 introduced additional capabilities, building a smaller, more efficient container image, thanks to two additional steps.
 
 ![Deploying a Spring Boot application as a native image](https://raw.githubusercontent.com/spring-academy/spring-academy-assets/main/courses/course-spring-boot-native/deployment-native.svg)
 

@@ -20,3 +20,6 @@
 .envrc
 .vscode
 .claude
+
+# build
+build
