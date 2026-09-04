@@ -24,23 +24,23 @@ Build resources:
 SLF4J(W): No SLF4J providers were found.
 SLF4J(W): Defaulting to no-operation (NOP) logger implementation
 SLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.
-[2/8] Performing analysis...  [******]                                                                 (288.0s @ 1.91GB)
-   19,162 types,  28,835 fields, and  88,980 methods found reachable
+[2/8] Performing analysis...  [*****]                                                                  (176.6s @ 1.90GB)
+   19,162 types,  28,835 fields, and  88,979 methods found reachable
     7,183 types,   3,727 fields, and  15,184 methods registered for reflection
       136 types,     229 fields, and     122 methods registered for JNI access
         0 downcalls and 0 upcalls registered for foreign access
         4 native libraries: dl, pthread, rt, z
-[3/8] Building universe...                                                                              (38.2s @ 2.22GB)
-[4/8] Parsing methods...      [*****]                                                                   (26.1s @ 2.40GB)
-[5/8] Inlining methods...     [***]                                                                     (20.0s @ 2.66GB)
-[6/8] Compiling methods...    [*****************]                                                      (303.1s @ 2.22GB)
-[7/8] Laying out methods...   [*****]                                                                   (29.1s @ 2.97GB)
-[8/8] Creating image...       [*****]                                                                   (25.4s @ 3.32GB)
+[3/8] Building universe...                                                                              (21.5s @ 2.14GB)
+[4/8] Parsing methods...      [****]                                                                    (16.6s @ 2.35GB)
+[5/8] Inlining methods...     [***]                                                                     (13.1s @ 2.58GB)
+[6/8] Compiling methods...    [**********]                                                             (112.4s @ 2.33GB)
+[7/8] Laying out methods...   [****]                                                                    (17.7s @ 2.97GB)
+[8/8] Creating image...       [****]                                                                    (14.3s @ 3.41GB)
 ...
-Finished generating 'demo' in 12m 49s.
+Finished generating 'demo' in 6m 39s.
 [native-image-plugin] Native Image written to: /home/eduk8s/demo/build/native/nativeCompile
 
-BUILD SUCCESSFUL in 13m 26s
+BUILD SUCCESSFUL in 7m 3s
 ...
 ```
 
@@ -55,7 +55,7 @@ In the upper terminal, execute this command:
 Check the application startup time again. Notice that this time, the native application started _significantly faster_:
 
 ```
-Started DemoApplication in 0.054 seconds (process running for 0.096)
+Started DemoApplication in 0.114 seconds (process running for 0.124)
 ```
 
 Once again, verify that the application is behaving correctly. In the lower terminal, request the web page and check that your application still says "hello":

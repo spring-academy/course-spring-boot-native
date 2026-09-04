@@ -26,10 +26,11 @@ You'll know the build is complete when you see output similar to the following:
 
 ```console
 ...
-   [creator]     [7/7] Creating image...                                         (32.5s @ 2.31GB)
+   [creator]     [8/8] Creating image...       [*****]                           (23.5s @ 3.49GB)
 ...
 Successfully built image 'docker.io/library/demo:0.0.1-SNAPSHOT'
-BUILD SUCCESSFUL in 2m 23s
+
+BUILD SUCCESSFUL in 8m 47s
 ```
 
 Once the build is complete, running the resulting OCI image is quite easy and the startup time is very fast, as you can see by the output:

@@ -40,14 +40,12 @@ We'll choose this one and install the latest Java 25 version available:
 [~/demo] $ sdk install java 25.0.4.r25-nik
 ```
 
-The install should take a couple of minutes after which you will be asked if you wish to set the newly installed JDK as the default. Select `y` and hit enter.
+The install should take a couple of minutes after which the newly installed JDK should be set as the default.
 
 ```console
 ...
 Installing: java 25.0.4.r25-nik
 Done installing!
-
-Do you want java 25.0.4.r25-nik to be set as default? (Y/n): y
 
 Setting java 25.0.4.r25-nik as default.
 ```

@@ -7,7 +7,7 @@ We'll start by generating a complete codebase that's Native-Image-ready. To star
 You don't need to make any changes on the _Project_,
 _Language_, or _Spring Boot_ sections of the Initializr web page.
 
-In the _Project Metadata_ section, change the **Java** version to **25**. This
+In the _Project Metadata_ section, set the name to **Demo** and change the **Java** version to **25**. This version
 matches the GraalVM distribution we'll install in a later step — the project
 won't build correctly on the JVM version the Initializr defaults to otherwise.
 

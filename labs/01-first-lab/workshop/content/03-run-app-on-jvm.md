@@ -17,7 +17,7 @@ name: Terminal
 Within a minute, you should see that the application has started. You'll know the application has started when you see the text containing the startup time. In the below example, it took about 0.7 seconds for the application to startup. This does _not_ include the compile and download times - just the application startup time:
 
 ```console
-2023-06-29T00:59:24.760Z  INFO 1561 --- [           main] com.example.demo.DemoApplication         : Started DemoApplication in 0.734 seconds (process running for 0.881)
+2026-09-04T08:43:18.182Z  INFO 1387 --- [Demo] [           main] com.example.demo.DemoApplication         : Started DemoApplication in 0.734 seconds (process running for 0.881)
 ```
 
 Make a note of how long it took the application to start. We'll use this information in a couple of minutes.
