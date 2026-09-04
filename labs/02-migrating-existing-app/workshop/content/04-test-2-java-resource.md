@@ -1,5 +1,11 @@
 Remove the `@DisabledInNativeImage` annotation from the test that we just fixed (`htmlBanner`), so that now both tests will run when we execute the test suite:
 
+```editor:select-matching-text
+file: ~/exercises/src/test/java/example/cashcard/CashCardApplicationTests.java
+text: "htmlBanner"
+description: "Open CashCardApplicationTests.java"
+```
+
 ```java
 @Test
 void htmlBanner() throws IOException {
@@ -22,7 +28,15 @@ But, wait! The `cashcard-banner.txt` resource file _does_ exist where you would 
 
 We’ll add a bean which implements the `RuntimeHintsRegistrar` interface. This interface allows you to declare not only resource hints (which is what we’re about to do), but also reflection, JNI (Java Native Interface), proxy, and serialization hints. We're going to leverage this API to register the project specific `cashcard-banner.txt` resource file, which will result in it being included in the native image.
 
-1. Add a nested class called `Hints` in `CashCardApplication` as in the following. **_Note_**: Be sure to add the three new import statements:
+1. Add a nested class called `Hints` in `CashCardApplication` as in the following.
+   
+    **_Note_**: Be sure to add the three new import statements:
+
+    ```editor:select-matching-text
+    file: ~/exercises/src/main/java/example/cashcard/CashCardApplication.java
+    text: "public class CashCardApplication"
+    description: "Open CashCardApplication.java"
+    ```
 
    ```java
    import org.springframework.aot.hint.RuntimeHints;
@@ -42,7 +56,15 @@ We’ll add a bean which implements the `RuntimeHintsRegistrar` interface. This 
 
    **_NOTE:_** We chose to use an inner (nested) class. We could just as easily do this using a regular top-level class. By using a nested class, we've kept all of the configuration “contained” in a single place. Depending on your own needs and preferences, you might wish to organize your own codebase differently!
 
-2. Enable the `Hints` class by annotating the `CashCardApplication` class with the `@ImportRuntimeHints` annotation, as follows. **_Note_**: Be sure to add the new import statement:
+2. Enable the `Hints` class by annotating the `CashCardApplication` class with the `@ImportRuntimeHints` annotation, as follows. 
+   
+   **_Note_**: Be sure to add the new import statement:
+
+    ```editor:select-matching-text
+    file: ~/exercises/src/main/java/example/cashcard/CashCardApplication.java
+    text: "public class CashCardApplication"
+    description: "Open CashCardApplication.java"
+    ```
 
    ```java
    import org.springframework.context.annotation.ImportRuntimeHints;

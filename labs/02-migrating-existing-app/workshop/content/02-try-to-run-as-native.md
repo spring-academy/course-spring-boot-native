@@ -4,6 +4,12 @@ We’re ready to begin the process of compiling the Cash Card application to a n
 
 The first thing to do is add the native image plugin to the Gradle build file. Add the following line to the `plugins {}` block at the top of the `build.gradle` file:
 
+```editor:select-matching-text
+file: ~/exercises/build.gradle
+text: "plugins"
+description: "Open build.gradle"
+```
+
 ```json
 plugins {
    …
@@ -19,7 +25,7 @@ First, let’s try to compile and run the application in native image mode to ge
 [~/exercises] $ ./gradlew nativeCompile
 ```
 
-Note that this will take a couple minutes as the GraalVM analyzes and processes the application. You’ll see several steps as the application compiles:
+**_Note_**: This will take a couple minutes as the GraalVM analyzes and processes the application. You’ll see several steps as the application compiles:
 
 ```console
 [1/8] Initializing…
@@ -38,8 +44,10 @@ Great, it compiles! Let’s see if it runs:
 
 ```console
 [~/exercises] $ build/native/nativeCompile/cashcard
-…
-2023-08-01T23:38:23.673-06:00  INFO 89892 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+...
+2026-09-04T09:53:57.408Z  INFO 12278 --- [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-09-04T09:53:57.413Z  INFO 12278 --- [           main] example.cashcard.CashCardApplication     : Started CashCardApplication in 0.289 seconds (process running for 0.301)
+...
 ```
 
 So far so good! In your browser, manually test the `/banner` endpoint by navigating to <https://{{ session_namespace }}-cashcard.{{ ingress_domain }}/banner>. You’ll see the following output in the browser:
@@ -56,7 +64,9 @@ java.io.FileNotFoundException: class path resource [cashcard-banner.txt] cannot 
 
 That’s disappointing. Let's put that in our list things to fix, and carry on investigating the other endpoint: `/list `.
 
-Navigate to <https://{{ session_namespace }}-cashcard.{{ ingress_domain }}/list>. Again, you will get a 500 error. The terminal shows the cause:
+Navigate to <https://{{ session_namespace }}-cashcard.{{ ingress_domain }}/list>. 
+
+Again, you will get a 500 error. The terminal shows the cause:
 
 ```console
 org.thymeleaf.exceptions.TemplateProcessingException: Exception evaluating SpringEL expression: "cashcard.id" (template: "list.html" - line 5, col 47)] with root cause

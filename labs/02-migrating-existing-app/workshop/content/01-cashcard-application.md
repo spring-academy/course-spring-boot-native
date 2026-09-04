@@ -8,6 +8,12 @@ If you’re familiar with Spring Web and Spring Data, you will recognize the Con
 
 Take a look at the `CashCardController` class, which has two GET endpoints: `/list`, and `/banner`:
 
+```editor:select-matching-text
+file: ~/exercises/src/main/java/example/cashcard/CashCardController.java
+text: "@GetMapping("/list")"
+description: "Open CashCardController.java"
+```
+
 ```java
 @GetMapping("/list")
 public String findAll(Model model) {
@@ -42,6 +48,12 @@ This is a common pattern in real-world applications: Having separate data classe
 
 The codebase contains two tests: one for each GET endpoint (`/list` and `/banner`). The `/list` test expects to receive a subset of the data from the seed file (`data.sql`) to be present:
 
+```editor:select-matching-text
+file: ~/exercises/src/test/java/example/cashcard/CashCardApplicationTests.java
+text: "void cashCardHtmlList"
+description: "Open CashCardApplicationTests.java"
+```
+
 ```java
 @Test
 void cashCardHtmlList() {
@@ -71,7 +83,7 @@ Before trying to run the application as a native image, let’s make sure the te
 [~/exercises] $ ./gradlew test
 > Task :test
 …
-BUILD SUCCESSFUL in 4s
+BUILD SUCCESSFUL in 54s
 ```
 
 ## Running the application

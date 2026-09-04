@@ -4,6 +4,12 @@ Let’s focus on this test by using an annotation provided by our testing framew
 
 Edit `src/test/java/example/cashcard/CashCardApplicationTests.java` and add `@DisabledInNativeImage` to the `htmlBanner()` test. Be sure to add the new `import` statement:
 
+```editor:select-matching-text
+file: ~/exercises/src/test/java/example/cashcard/CashCardApplicationTests.java
+text: "htmlBanner"
+description: "Open CashCardApplicationTests.java"
+```
+
 ```java
 import org.junit.jupiter.api.condition.DisabledInNativeImage;
 ...
@@ -32,6 +38,12 @@ We're going to fix this error in a moment, but first let’s analyze what the ca
 
 Modify the `findAll` method in `src/main/java/example/cashcard/CashCardController.java` by commenting out the current implementation, and replacing it with a seemingly-equivalent one:
 
+```editor:select-matching-text
+file: ~/exercises/src/main/java/example/cashcard/CashCardController.java
+text: "@GetMapping("/list")"
+description: "Open CashCardController.java"
+```
+
 ```java
 public class CashCardController {
 …
@@ -46,7 +58,15 @@ public class CashCardController {
 }
 ```
 
-To convince yourself that this should produce the same response, take another look at the `src/main/resources/templates/list.html` template. Notice that since the field names are the same in the `CashCard` class and `CashCardDto` class, the template should still render the same output HTML.
+To convince yourself that this should produce the same response, take another look at the `src/main/resources/templates/list.html` template. 
+
+```editor:select-matching-text
+file: ~/exercises/src/main/resources/templates/list.html
+text: "cashcard"
+description: "Open list.html"
+```
+
+Notice that since the field names are the same in the `CashCard` class and `CashCardDto` class, the template should still render the same output HTML.
 
 Now, let’s run the tests again:
 
@@ -62,9 +82,15 @@ We changed one simple thing: Namely, using `CashCard` instead of `CashCardDto`, 
 
 GraalVM doesn’t always know which parts of your codebase need to be processed for native image compilation! In this case, the problem is that the Java reflection metadata for the `CashCard` class is included in the native executable, but `CashCardDto` is not. Let’s use the output of the native image compilation to verify that.
 
-View the content of the `build/generated/aotTestResources/META-INF/native-image/example/cashcard` directory. It contains 3 files: `proxy-config.json`, `reflect-config.json`, and `resource-config.json`. These files contain **reachability metadata,** which are generated during native compilation.
+View the content of the `build/generated/aotTestResources/META-INF/native-image/example/cashcard` directory. It contains a file called `reachability-metadata.json` which contains the **reachability metadata,** generated during native compilation.
 
 Open the `reflect-config.json` file. You’ll see an entry for the `CashCard` class:
+
+```editor:select-matching-text
+file: ~/exercises/build/generated/aotTestResources/META-INF/native-image/example/cashcard/reachability-metadata.json
+text: "example.cashcard.CashCard"
+description: "Open reachability-metadata.json"
+```
 
 ```json
 {
@@ -94,7 +120,9 @@ Why is there an entry for the `CashCard` class but not the `*Dto` classes? Sprin
 
 The cause of our current error is that the reachability data for our own application’s `CashCardDto` and `UserDto` classes are not part of any Spring Bean API. They're provided to the Thymeleaf templating engine using standard Java calls. It then tries to use Java reflection on the objects in order to render the template file, but it can't, because there is not reflection metadata for those classes in the native image.
 
-> **_Note_** (Recapping some learnings from the previous lesson): In this specific case, the Spring Ahead-Of-Time (AOT) engine can’t infer this information, which is needed by the Thymeleaf templating library. Therefore, you'll need to specify it explicitly. Thymeleaf is not a special case. Any reflection-based serialization - for example, in HTTP handler methods (when using HTTP clients like `WebClient` or `RestTemplate`) - will also require you to provide hints in the same way. Thus, this solution applies to many real-world scenarios you'll encounter when preparing an application for deployment as a native image.
+**_Note_** (Recapping some learnings from the previous lesson):
+
+> In this specific case, the Spring Ahead-Of-Time (AOT) engine can’t infer this information, which is needed by the Thymeleaf templating library. Therefore, you'll need to specify it explicitly. Thymeleaf is not a special case. Any reflection-based serialization - for example, in HTTP handler methods (when using HTTP clients like `WebClient` or `RestTemplate`) - will also require you to provide hints in the same way. Thus, this solution applies to many real-world scenarios you'll encounter when preparing an application for deployment as a native image.
 
 ## Solution: Specify static reflection hints using the Runtime Hints API
 
@@ -103,6 +131,12 @@ Fortunately, you _don't_ need to manually edit the `reflect-config.json` file. T
 To recap: The Thymeleaf templating engine is missing information from record classes used in the template model like `CashCardDto` and `UserDto`. Because of this, we're going to specify them manually. It can be tricky to know exactly how much reflection should be configured. Fortunately, the Runtime Hints API provides the `@RegisterReflectionForBinding` annotation, which is designed to register exactly what's needed, in most cases, for such a binding or serialization use case. So, let’s use it.
 
 1. Make sure that your Controller class is back in its original state, where it provides the `*Dto` classes to the Thymeleaf rendering engine (undo the experiment from the previous step):
+
+  ```editor:select-matching-text
+  file: ~/exercises/src/main/java/example/cashcard/CashCardController.java
+  text: "@GetMapping("/list")"
+  description: "Open CashCardController.java"
+  ```
 
    ```java
    public String findAll(Model model) {
@@ -113,9 +147,15 @@ To recap: The Thymeleaf templating engine is missing information from record cla
    }
    ```
 
-1. Annotate the `CashCardApplication` class with the `@RegisterReflectionForBinding` annotation, so that the class definition looks like this. **_Note_**: Be sure to add the new `import` statement.
+2. Annotate the `CashCardApplication` class with the `@RegisterReflectionForBinding` annotation in `src/main/java/example/cashcard/CashCardApplication.java`, so that the class definition looks like this. 
+   
+   **_Note_**: Be sure to add the new `import` statement.
 
-   In `src/main/java/example/cashcard/CashCardApplication.java`:
+  ```editor:select-matching-text
+  file: ~/exercises/src/main/java/example/cashcard/CashCardApplication.java
+  text: "@SpringBootApplication"
+  description: "Open CashCardApplication.java"
+  ```
 
    ```java
    import org.springframework.aot.hint.annotation.RegisterReflectionForBinding;
