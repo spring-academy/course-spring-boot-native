@@ -1,0 +1,10 @@
+DIR_LAB               = lab
+NAME                  = course-spring-boot-native
+IMAGE_SOURCE          = https://github.com/spring-academy/course-spring-boot-native
+CONTAINER_REGISTRY    = 
+CONTAINER_REPOSITORY  = course-spring-boot-native
+CODE_REPO             = https://github.com/spring-academy/course-spring-boot-native-code.git
+CODE_REPO_BRANCH      = main
+version               = latest
+
+env                   = local

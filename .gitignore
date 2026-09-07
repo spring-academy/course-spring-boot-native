@@ -19,3 +19,7 @@
 .yarn
 .envrc
 .vscode
+.claude
+
+# build
+build
