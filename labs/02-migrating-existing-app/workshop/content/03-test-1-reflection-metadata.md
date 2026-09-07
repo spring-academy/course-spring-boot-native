@@ -40,7 +40,7 @@ Modify the `findAll` method in `src/main/java/example/cashcard/CashCardControlle
 
 ```editor:select-matching-text
 file: ~/exercises/src/main/java/example/cashcard/CashCardController.java
-text: "GetMapping"
+text: "findAll"
 description: "Open CashCardController.java"
 ```
 
@@ -138,7 +138,7 @@ To recap: The Thymeleaf templating engine is missing information from record cla
 
   ```editor:select-matching-text
   file: ~/exercises/src/main/java/example/cashcard/CashCardController.java
-  text: "GetMapping"
+  text: "findAll"
   description: "Open CashCardController.java"
   ```
 
@@ -174,7 +174,7 @@ To recap: The Thymeleaf templating engine is missing information from record cla
 
    The `@RegisterReflectionForBinding` annotation accepts a list of classes, and ensures that the necessary reflection metadata for these classes are available to the running native image. In our case, this is what Thymeleaf needs to read the field values from the `*Dto` objects, in order to render the web page.
 
-1. Run the native tests again:
+3. Run the native tests again:
 
    ```dashboard:open-dashboard
    name: Terminal
