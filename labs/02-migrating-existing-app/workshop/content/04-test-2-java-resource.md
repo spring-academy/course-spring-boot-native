@@ -88,6 +88,10 @@ We’ll add a bean which implements the `RuntimeHintsRegistrar` interface. This 
 
 3. Run the native test again:
 
+   ```dashboard:open-dashboard
+   name: Terminal
+   ```
+
    ```console
    [~/exercises] $ ./gradlew nativeTest
    ...

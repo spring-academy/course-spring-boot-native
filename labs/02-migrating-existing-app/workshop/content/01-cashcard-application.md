@@ -79,6 +79,10 @@ void htmlBanner() throws IOException {
 
 Before trying to run the application as a native image, let’s make sure the tests pass as a standard JVM application:
 
+```dashboard:open-dashboard
+name: Terminal
+```
+
 ```console
 [~/exercises] $ ./gradlew test
 > Task :test
@@ -89,6 +93,10 @@ BUILD SUCCESSFUL in 54s
 ## Running the application
 
 As we expected of an application that's already complete, the tests pass! Let’s also look at the actual output web page, by running the application and navigating to the `/list` endpoint.
+
+```dashboard:open-dashboard
+name: Terminal
+```
 
 ```console
 [~/exercises] $ ./gradlew bootRun

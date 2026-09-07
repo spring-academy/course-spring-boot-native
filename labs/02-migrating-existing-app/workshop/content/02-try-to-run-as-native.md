@@ -21,6 +21,10 @@ plugins {
 
 First, let’s try to compile and run the application in native image mode to get an idea of how much work we might need to do to complete the migration to native image.
 
+```dashboard:open-dashboard
+name: Terminal
+```
+
 ```console
 [~/exercises] $ ./gradlew nativeCompile
 ```
@@ -41,6 +45,10 @@ Finished generating 'cashcard' in 1m 17s.
 ```
 
 Great, it compiles! Let’s see if it runs:
+
+```dashboard:open-dashboard
+name: Terminal
+```
 
 ```console
 [~/exercises] $ build/native/nativeCompile/cashcard
@@ -85,6 +93,10 @@ For this reason, it’s important to test your application thoroughly as a nativ
 ## Run the Tests as a Native Image
 
 Now that we've seen that our application isn't ready for native image compilation yet, let’s use our test suite to fix our errors, one by one. First, let’s run the entire test suite. Instead of the `test` Gradle target, we'll use the `nativeTest` target, which is part of the native build tools Gradle plugin.
+
+```dashboard:open-dashboard
+name: Terminal
+```
 
 ```console
 [~/exercises] $ ./gradlew nativeTest
