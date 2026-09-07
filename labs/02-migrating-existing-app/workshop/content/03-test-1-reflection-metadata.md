@@ -7,7 +7,6 @@ Edit `src/test/java/example/cashcard/CashCardApplicationTests.java` and add `@Di
 ```editor:select-matching-text
 file: ~/exercises/src/test/java/example/cashcard/CashCardApplicationTests.java
 text: "htmlBanner"
-description: "Open CashCardApplicationTests.java"
 ```
 
 ```java
@@ -41,7 +40,6 @@ Modify the `findAll` method in `src/main/java/example/cashcard/CashCardControlle
 ```editor:select-matching-text
 file: ~/exercises/src/main/java/example/cashcard/CashCardController.java
 text: "@GetMapping("/list")"
-description: "Open CashCardController.java"
 ```
 
 ```java
@@ -89,7 +87,6 @@ Open the `reflect-config.json` file. You’ll see an entry for the `CashCard` cl
 ```editor:select-matching-text
 file: ~/exercises/build/generated/aotTestResources/META-INF/native-image/example/cashcard/reachability-metadata.json
 text: "example.cashcard.CashCard"
-description: "Open reachability-metadata.json"
 ```
 
 ```json
@@ -135,7 +132,6 @@ To recap: The Thymeleaf templating engine is missing information from record cla
   ```editor:select-matching-text
   file: ~/exercises/src/main/java/example/cashcard/CashCardController.java
   text: "@GetMapping("/list")"
-  description: "Open CashCardController.java"
   ```
 
    ```java
@@ -154,7 +150,7 @@ To recap: The Thymeleaf templating engine is missing information from record cla
   ```editor:select-matching-text
   file: ~/exercises/src/main/java/example/cashcard/CashCardApplication.java
   text: "@SpringBootApplication"
-  description: "Open CashCardApplication.java"
+
   ```
 
    ```java

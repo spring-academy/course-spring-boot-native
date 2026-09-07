@@ -10,7 +10,7 @@ Take a look at the `CashCardController` class, which has two GET endpoints: `/li
 
 ```editor:select-matching-text
 file: ~/exercises/src/main/java/example/cashcard/CashCardController.java
-text: "@GetMapping("/list")"
+text: "GetMapping"
 description: "Open CashCardController.java"
 ```
 
