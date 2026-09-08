@@ -1,5 +1,9 @@
 Let's build the native image. In the lab environment we will make use of the ``--quick-build-native`` flag. This flag allows for a slightly quicker compile time at the expense of a slightly larger binary:
 
+```dashboard:open-dashboard
+name: Terminal
+```
+
 ```console
 [~/demo] $ ./gradlew nativeCompile --quick-build-native
 ...
