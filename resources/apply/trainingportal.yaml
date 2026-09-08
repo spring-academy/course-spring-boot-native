@@ -23,16 +23,16 @@ spec:
         - https://spring-academy-qa.broadcom.net
         - https://spring-academy-dev.broadcom.net
         - http://localhost:8080
-  analytics:
-    google:
-      trackingId: "${ANALYTICS_GOOGLE_ID}"
-    clarity:
-      trackingId: "${ANALYTICS_CLARITY_ID}"
     workshop:
       defaults:
         expires: 60m
         orphaned: 5m
         reserved: ${TRAINING_PORTAL_RESERVED}
+  analytics:
+    google:
+      trackingId: "${ANALYTICS_GOOGLE_ID}"
+    clarity:
+      trackingId: "${ANALYTICS_CLARITY_ID}"
   workshops:
     # The following are the items that should be added to the trainingportal in the deployment environment.
     - name: spr-boot-native-first-lab
