@@ -41,7 +41,7 @@ We’ll add a bean which implements the `RuntimeHintsRegistrar` interface. This 
    ```java
    import org.springframework.aot.hint.RuntimeHints;
    import org.springframework.aot.hint.RuntimeHintsRegistrar;
-   import org.springframework.lang.Nullable;
+   import org.jspecify.annotations.Nullable;
 
    public class CashCardApplication {
        …
