@@ -16,6 +16,10 @@ Building your application using a Buildpack does _not_ require the GraalVM nativ
 
 You can now build the application as an OCI container using the native Buildpack:
 
+```dashboard:open-dashboard
+name: Terminal
+```
+
 ```console
 [~/demo] $ ./gradlew bootBuildImage
 ```
@@ -35,6 +39,10 @@ BUILD SUCCESSFUL in 8m 47s
 
 Once the build is complete, running the resulting OCI image is quite easy and the startup time is very fast, as you can see by the output:
 
+```dashboard:open-dashboard
+name: Terminal
+```
+
 ```console
 [~/demo] $ docker run --rm -p 8080:8080 docker.io/library/demo:0.0.1-SNAPSHOT
 
@@ -49,6 +57,10 @@ Started DemoApplication in 0.045 seconds (process running for 0.048)
 > - `docker.io/library/demo:0.0.1-SNAPSHOT` is the name of the image that was registered in your local Docker registry from the previous step.
 
 To be sure that nothing has gone awry, go ahead and request the web page in the same way that you've already verified in earlier builds:
+
+```dashboard:open-dashboard
+name: Terminal
+```
 
 ```console
 [~/demo] $ curl http://localhost:8080/
