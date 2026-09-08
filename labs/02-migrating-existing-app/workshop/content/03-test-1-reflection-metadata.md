@@ -88,7 +88,7 @@ GraalVM doesn’t always know which parts of your codebase need to be processed 
 
 View the content of the `build/generated/aotTestResources/META-INF/native-image/example/cashcard` directory. It contains a file called `reachability-metadata.json` which contains the **reachability metadata,** generated during native compilation.
 
-Open the `reflect-config.json` file. You’ll see an entry for the `CashCard` class:
+Open the `reachability-metadata.json` file. You’ll see an entry for the `CashCard` class:
 
 ```editor:select-matching-text
 file: ~/exercises/build/generated/aotTestResources/META-INF/native-image/example/cashcard/reachability-metadata.json
@@ -120,7 +120,7 @@ description: "Open reachability-metadata.json"
 
 What you _won't_ find, however, is any reference to the `CashCardDto` or `UserDto` classes. This is the cause of our error.
 
-Why is there an entry for the `CashCard` class but not the `*Dto` classes? Spring does its best to infer the reflection entries based on the types exposed in your beans API. In this case, the entry in the `reflect-config.json` file has been created for the `CashCard` class because `CashCard` is exposed in `CashCardRepository` API, which is a Spring Bean.
+Why is there an entry for the `CashCard` class but not the `*Dto` classes? Spring does its best to infer the reflection entries based on the types exposed in your beans API. In this case, the entry in the `reachability-metadata.json` file has been created for the `CashCard` class because `CashCard` is exposed in `CashCardRepository` API, which is a Spring Bean.
 
 The cause of our current error is that the reachability data for our own application’s `CashCardDto` and `UserDto` classes are not part of any Spring Bean API. They're provided to the Thymeleaf templating engine using standard Java calls. It then tries to use Java reflection on the objects in order to render the template file, but it can't, because there is not reflection metadata for those classes in the native image.
 
@@ -130,7 +130,7 @@ The cause of our current error is that the reachability data for our own applica
 
 ## Solution: Specify static reflection hints using the Runtime Hints API
 
-Fortunately, you _don't_ need to manually edit the `reflect-config.json` file. There's a type-safe, less error-prone way: use the Runtime Hints API!
+Fortunately, you _don't_ need to manually edit the `reachability-metadata.json` file. There's a type-safe, less error-prone way: use the Runtime Hints API!
 
 To recap: The Thymeleaf templating engine is missing information from record classes used in the template model like `CashCardDto` and `UserDto`. Because of this, we're going to specify them manually. It can be tricky to know exactly how much reflection should be configured. Fortunately, the Runtime Hints API provides the `@RegisterReflectionForBinding` annotation, which is designed to register exactly what's needed, in most cases, for such a binding or serialization use case. So, let’s use it.
 
