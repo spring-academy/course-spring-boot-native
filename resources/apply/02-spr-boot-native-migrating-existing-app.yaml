@@ -7,14 +7,6 @@ spec:
   description: "Spring Boot Native, Lab 2: Migrating an Existing App"
   workshop:
     image: jdk21-environment:*
-    packages:
-      - name: spring-academy-lab
-        files:
-          - image:
-              url: ghcr.io/spring-academy/spring-academy-extension-packages/spring-academy-lab
-              tagSelection:
-                semver:
-                  constraints: ">=1.0.0 <2.0.0"
     files:
       - http:
           # the name of the tar.gz here should make the workshop name
